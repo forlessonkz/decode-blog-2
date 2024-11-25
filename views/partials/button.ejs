@@ -1,0 +1,14 @@
+<% if(icon && icon.length > 0) { %>
+    <a href=<%- link %>>
+        <button>
+            <img class="icon" src="<%= icon %>" alt="">
+            <%= title %>
+        </button>
+    </a>
+<% } else { %>
+    <a href="<%- link %>">
+        <button>
+            <%= title %>
+        </button>
+    </a>
+<% } %>
