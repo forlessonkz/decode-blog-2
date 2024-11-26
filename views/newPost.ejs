@@ -23,22 +23,13 @@
                     Новый блог
                 </h1>
                 <form class="new-post-form" action="">
-                    <fieldset>
-                        <label>Выберите категорию</label>
-                        <select name="categories" id="">
-                            <% categories.forEach(category => { %>
-                                <option value=""><%= category.categoryName %></option>
-                            <% }) %>
-                            <option value="">Алгоритмы</option>
-                        </select>
-                    </fieldset>
                     <input type="text" placeholder="Введите заголовок блога">
-                    <!-- <input list="options" id="choices" name="choices" placeholder="Выберите категорию">
+                    <input list="options" id="choices" name="choices" placeholder="Выберите категорию">
                     <datalist id="options">
                       <option value="Опция 1">
                       <option value="Опция 2">
                       <option value="Опция 3">
-                    </datalist> -->
+                    </datalist>
                 </form>
                 <button class="add-images-btn">
                     Выберите картинку

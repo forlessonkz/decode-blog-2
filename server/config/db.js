@@ -1,23 +1,27 @@
-// Импорт библиотеки Mongoose:
 const mongoose = require('mongoose');
-// Это загружает Mongoose, который является ODM (Object Data Modeling) 
-// библиотекой для MongoDB и Node.js.
 
-// Асинхронная функция 
+
 async function connectToDb() {
     try {
-        // Дання строка подключается к базе данных
-        await mongoose.connect('mongodb://localhost:27017/decodeblogII');
-        // Выводит сообщение при успешном подключении
-        console.log('Successfully connected to MongoDB at mongodb://localhost:27017/decodeblogII');
+        await mongoose.connect('mongodb://localhost:27017/decodeDB');
+        console.log('Connected to mongoDB')
     } catch (e) {
-        // Выводит сообщение об ошибке при подключении к БД
-        console.log(`Filed to connect to mongoDB ${e.message}.`);
+        console.log(`FFailed to connect to mongoDB. Error: ${e}`)
     }
 }
 
+
+// Обработка событий подключения 
+mongoose.connection.on('connected', () => { 
+    console.log('Mongoose connected to db'); 
+}); 
+
+mongoose.connection.on('error', (err) => { 
+    console.log(`Mongoose connection error: ${err.message}`); 
+}); 
+
+mongoose.connection.on('disconnected', () => { 
+    console.log('Mongoose disconnected');
+});
+
 connectToDb()
-
-
-
-
