@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
     "connect-mongo": "^5.1.0",
     "decode-blog": "file:",
     "ejs": "^3.1.10",
@@ -19,6 +20,7 @@
     "express-session": "^1.18.1",
     "mongoose": "^8.8.0",
     "nodemon": "^3.1.7",
-    "passport": "^0.7.0"
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
   }
 }

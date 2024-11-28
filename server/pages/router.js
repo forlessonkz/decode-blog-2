@@ -1,28 +1,39 @@
 const express = require('express');
 const router = express.Router();
+const User = require('../auth/User');
 
 router.get('/', (req, res) => {
-    res.render('index')
+    res.render('index', {user: req.user ? req.user : {}})
 })
 
 router.get('/page', (req, res) => {
-    res.render('postPage')
+    res.render('postPage', {user: req.user ? req.user : {}})
 })
 
 router.get('/signIn', (req, res) => {
-    res.render('signIn')
+    res.render('signIn', {user: req.user ? req.user : {}})
 })
 
 router.get('/signUp', (req, res) => {
-    res.render('signUp')
+    res.render('signUp', {user: req.user ? req.user : {}})
 })
 
-router.get('/profile', (req, res) => {
-    res.render('profile')
+router.get('/profile/:id', async (req, res) => {
+    const user = await User.findById(req.params.id)
+    if(user) {
+        res.render('profile', {user: user ? req.user : {}, loginUser: req.user})
+    } else {
+        res.redirect('/not-found')
+    }
+
+})
+
+router.get('/not-found', (req, res) => {
+    res.render('notFound', {user: req.user ? req.user : {}})
 })
 
 router.get('/new', (req, res) => {
-    res.render('newPost')
+    res.render('newPost', {user: req.user ? req.user : {}})
 })
 
 module.exports = router;

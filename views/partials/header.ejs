@@ -9,7 +9,12 @@
         </form>
     </div>
     <div class="header-user-actions">
-        <%- include('./button', {icon: '', title: 'Sign up', link: '/signUp'}) %>
-        <%- include('./button', {icon: '', title: 'Sign in', link: '/signIn'}) %>
+        <% if(user._id) { %>
+            <div></div>
+            <%- include('./userLogo', {image: '/image/user-photo/user-logo.png'})  %>
+        <% } else { %>
+            <%- include('./button', {icon: '', title: 'Sign up', link: '/signUp'}) %>
+            <%- include('./button', {icon: '', title: 'Sign in', link: '/signIn'}) %>
+        <% } %>
     </div>
 </header>

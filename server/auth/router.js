@@ -1,16 +1,11 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-const {signUp, signIn} = require('./controller');
+const {signUp, signIn, signOut} = require('./controller');
 
 
 router.post('/api/signup', signUp);
-router.post(
-    '/api/signuin', 
-    passport.authenticate('local', {
-        failureRedirect: '/signIn?error=1'
-    }),
-    signIn
-);
+router.post('/api/signin', passport.authenticate('local', {failureRedirect: '/signIn?error=1'}), signIn);
+router.get('/api/signout', signOut);
 
 module.exports = router;
