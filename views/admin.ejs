@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs', {title: 'Admin'}) %>
+<body>
+    <main class="base-width">
+        <%- include('./partials/header.ejs', {link: ''}) %>
+        <div class="main-container">
+            <div class="content">
+                <h1>It is Admin page!</h1>
+                <div class="side-bar">
+                    <div class="user-info">
+                        <%- include('./partials/userLogo.ejs', {image: '/image/user-photo/user-logo.png', link: ""}) %>
+                        <h3 class="user-name"><%= user.full_name %></h3>
+                        <p class="about-user">В основном пишу про веб - разработку, на React & Redux</p>
+                        <p class="post-item-count">285 постов за все время</p>
+                        <% if(loginUser._id == user._id) { %>
+                            <a href="/edit" class="edit-btn btn">Редактировать</a>
+                            <a href="/api/signout" class="logout-btn btn">Выход</a>
+                        <% } %>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
