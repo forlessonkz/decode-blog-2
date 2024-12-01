@@ -9,24 +9,25 @@
                 <div class="post-container">
                     <%- include('./partials/sectionsHeader.ejs', {title: 'Блоги по программированию', description: 'Популярные и лучшие публикации по программированию для начинающих и профессиональных программистов и IT-специалистов.'}) %>
                     <div class="posts-list">
-                        <%- include('./partials/postItem.ejs', {image: '/image/posts/post001.png'}) %>
-                        <%- include('./partials/postItem.ejs', {image: '/image/posts/post002.png'}) %>
+                        <% posts.forEach(post => { %>
+                            <%- include('./partials/postItem.ejs', {
+                                postTitle: post.postTitle, 
+                                postCategory: post.postCategory.name, 
+                                postDescription: post.postDescription, 
+                                image: post.image, 
+                                author: post.author.full_name,
+                                isAuthor: post.author._id,
+                                user: user,
+                            }) %>
+                        <% }) %>
                     </div>
                 </div>
                 <div class="side-bar">
                     <%- include('./partials/sectionsHeader.ejs', {title: 'Категории', description: ''}) %>
                     <ul class="link-list">
-                        <%= user.email %>
-                        <li><a href="">Прогнозы в IT</a></li>
-                        <li><a href="">Веб-разработка</a></li>
-                        <li><a href="">Мобильная разработка</a></li>
-                        <li><a href="">Фриланс</a></li>
-                        <li><a href="">Алгоритмы</a></li>
-                        <li><a href="">Тестирование IT систем</a></li>
-                        <li><a href="">Разработка игр</a></li>
-                        <li><a href="">Дизайн и юзабилити</a></li>
-                        <li><a href="">Искуственный интелект</a></li>
-                        <li><a href="">Машинное обучение</a></li>
+                        <% categories.forEach(category => { %>
+                            <%- include('./partials/categories.ejs', {category}) %>
+                        <% }) %>
                     </ul>
                 </div>
             </div>

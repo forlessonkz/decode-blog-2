@@ -7,6 +7,7 @@ const mongooseStore = require('connect-mongo');
 const passport = require('passport');
 
 
+
 const app = express();
 const PORT = 9081;
 
@@ -33,7 +34,10 @@ app.use(passport.session());
 
 
 app.use(require('./server/pages/router'));
-app.use(require('./server/auth/router'))
+app.use(require('./server/Categories/router'));
+app.use(require('./server/auth/router'));
+app.use(require('./server/Posts/router'));
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on PORT ${PORT}`);

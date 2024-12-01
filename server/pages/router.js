@@ -1,10 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../auth/User');
+const Categories = require('../Categories/Categories');
+const Posts = require('../Posts/Post');
 
 router.get('/', async (req, res) => {
+    const allCategories = await Categories.find()
     const user = await User.findById(req.params.id)
-    res.render('index', {user: req.user ? req.user : {}, loginUser: req.user})
+    const posts = await Posts.find().populate('postCategory').populate('author')
+    res.render('index', {
+        posts: posts, 
+        categories: allCategories, 
+        user: req.user ? req.user : {}, 
+        loginUser: req.user
+    })
 })
 
 router.get('/page', (req, res) => {
@@ -21,8 +30,15 @@ router.get('/signUp', (req, res) => {
 
 router.get('/profile/:id', async (req, res) => {
     const user = await User.findById(req.params.id)
+    const allCategories = await Categories.find()
+    const posts = await Posts.find().populate('postCategory').populate('author')
     if(user) {
-        res.render('profile', {user: req.user ? req.user : {}, loginUser: req.user})
+        res.render('profile', {
+            posts: posts,
+            categories: allCategories, 
+            user: user, 
+            loginUser: req.user
+        })
     } else {
         res.redirect('/not-found')
     }
@@ -39,8 +55,9 @@ router.get('/not-found', (req, res) => {
     res.render('notFound', {user: req.user ? req.user : {}})
 })
 
-router.get('/new', (req, res) => {
-    res.render('newPost', {user: req.user ? req.user : {}})
+router.get('/new', async (req, res) => {
+    const allCategories = await Categories.find()
+    res.render('newPost', {categories: allCategories, user: req.user ? req.user : {}})
 })
 
 module.exports = router;

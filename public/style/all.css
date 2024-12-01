@@ -5,6 +5,7 @@
 @import url('./components/header.css');
 @import url('./components/postItem.css');
 @import url('./components/userLogo.css');
+@import url('./components/fieldset.css');
 
 @import url('./pages/siginIn.css');
 @import url('./pages/profile.css');

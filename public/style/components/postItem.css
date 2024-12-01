@@ -17,13 +17,41 @@
 .post-title {
     margin-top: 30px;
     margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.post-description > h1 {
+.post-title h1 {
     font-size: 28px;
     font-weight: 400;
     line-height: 24px;
 }
+
+.post-btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.post-btns > .btn {
+    padding: 15px 20px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.post-btns > .delete {
+    background-color: red;
+    margin-right: 15px;
+}
+
+.post-btns > .edit {
+    background-color: orange;
+}
+
 
 .post-description > p {
     font-size: 16px;

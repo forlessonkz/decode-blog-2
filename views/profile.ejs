@@ -8,15 +8,28 @@
             <div class="post-container">
                 <div class="profile-pge-header sections-header">
                     <h1 class="">Мои блоги</h1> 
-                    <a href="">
-                        <button class="new-blog-btn">
-                            Новый блог
+                
+                    <a href="/new">
+                        <button href="" class="new-blog-btn">
+                            Новый блог 
                         </button>
                     </a>
                 </div>
                 <div class="posts-list">
-                    <%- include('./partials/postItem.ejs', {image: '/image/posts/post001.png'}) %>
-                    <%- include('./partials/postItem.ejs', {image: '/image/posts/post002.png'}) %>
+                    <%= user._id %>
+                    <%=posts.postTitle%>
+                    <% posts.forEach(post => { %>
+                        <% if(String(post.author.id) === String(user._id)) { %>
+                            <%- include('./partials/postItem.ejs', {
+                                postTitle: post.postTitle, 
+                                postCategory: post.postCategory.name, 
+                                postDescription: post.postDescription, 
+                                image: post.image, 
+                                author: post.author.full_name,
+                                isAuthor: post.author.id,
+                            }) %>
+                        <% } %>
+                    <% }) %>
                 </div>
             </div>
             <div class="side-bar">
@@ -25,11 +38,10 @@
                     <h3 class="user-name"><%= user.full_name %></h3>
                     <p class="about-user">В основном пишу про веб - разработку, на React & Redux</p>
                     <p class="post-item-count">285 постов за все время</p>
-                    <% if(loginUser._id == user._id) { %>
+                    <% if(loginUser.id == user.id) { %>
                         <a href="/edit" class="edit-btn btn">Редактировать</a>
                         <a href="/api/signout" class="logout-btn btn">Выход</a>
                     <% } %>
-
                 </div>
             </div>
         </div>

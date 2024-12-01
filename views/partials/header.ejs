@@ -13,6 +13,7 @@
             <div></div>
             <%- include('./userLogo', {image: '/image/user-photo/user-logo.png', link: `/admin/${user._id}`})  %>
         <% } else if (user._id && !user.isAdmin) { %>
+            <div></div>
             <%- include('./userLogo', {image: '/image/user-photo/user-logo.png', link: `/profile/${user._id}`})  %>
         <% } else { %>
             <%- include('./button', {icon: '', title: 'Sign up', link: '/signUp'}) %>

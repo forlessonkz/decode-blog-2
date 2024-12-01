@@ -13,7 +13,7 @@
                         <h3 class="user-name"><%= user.full_name %></h3>
                         <p class="about-user">В основном пишу про веб - разработку, на React & Redux</p>
                         <p class="post-item-count">285 постов за все время</p>
-                        <% if(loginUser._id == user._id) { %>
+                        <% if(loginUser.id == user.id) { %>
                             <a href="/edit" class="edit-btn btn">Редактировать</a>
                             <a href="/api/signout" class="logout-btn btn">Выход</a>
                         <% } %>
