@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/head.ejs', {title: 'New Post'}) %>
+    <%- include('./partials/head.ejs', {title: 'Edit Post'}) %>
 <body>
     <div class="base-width profile-page">
         <%- include('./partials/header.ejs', {link: ''}) %>
         <div class="new-post-page base-right-left-padding">
             <div class="new-post-container  main-container">
                 <h1 class="sections-header">
-                    Новый блог
+                    Редактировать блог
                 </h1>
                 <form 
                     class="new-post-form" 
@@ -18,7 +18,9 @@
                     <fieldset class="fieldset_categories">
                         <label for="">Введите заголовок блога</label>
                         <select name="postCategory" id="">
-                            <% categories.forEach(category => { %>
+                            <% categories.forEach(category => { 
+                                if(category._id == post.category)
+                            %>
                                 <option value="<%= category._id %>">
                                     <%= category.name %>
                                 </option>
@@ -27,7 +29,7 @@
                     </fieldset>
                     <fieldset class="fieldset_title">
                         <label for="">Введите название блога</label>
-                        <input type="text" name="postTitle">
+                        <input type="text" value="<%= post.postTitle %>" name="postTitle">
                     </fieldset>
                     <fieldset class="fieldset_image">
                         <label for="">Выберите картинку</label>
@@ -42,7 +44,7 @@
                         </textarea>
                     </div>
                     <button type="submit" class="create-new-post">
-                        Создать пост
+                        Редактировать 
                     </button>
                 </form>
             </div>

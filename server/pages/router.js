@@ -60,4 +60,10 @@ router.get('/new', async (req, res) => {
     res.render('newPost', {categories: allCategories, user: req.user ? req.user : {}})
 })
 
+router.get('/edit/:id', async (req, res) => {
+    const allCategories = await Categories.find()
+    const post = await Posts.findById(req.params.id)
+    res.render('edit', {categories: allCategories, user: req.user ? req.user : {}, post,})
+})
+
 module.exports = router;
