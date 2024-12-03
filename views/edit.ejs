@@ -11,20 +11,28 @@
                 </h1>
                 <form 
                     class="new-post-form" 
-                    action="/api/new"
+                    action="/api/post/edit"
                     method="POST"
                     enctype="multipart/form-data"
-                >
+                >   <fieldset>
+                        <input type="hidden" value="<%= post._id%>" name="id">
+                    </fieldset>
                     <fieldset class="fieldset_categories">
                         <label for="">Введите заголовок блога</label>
                         <select name="postCategory" id="">
-                            <% categories.forEach(category => { 
-                                if(category._id == post.category)
+                            <% 
+                                categories.forEach(category => { 
+                                    if(category.id == post.category) {
                             %>
-                                <option value="<%= category._id %>">
-                                    <%= category.name %>
-                                </option>
-                            <% }) %>
+                                        <option value="<%= category._id%>" selected><%= category.name %></option>
+                            <% 
+                                    } else {
+                            %>
+                                        <option value="<%= category._id%>"><%= category.name %></option>
+                            <% 
+                                    }
+                                }) 
+                            %>
                         </select>
                     </fieldset>
                     <fieldset class="fieldset_title">

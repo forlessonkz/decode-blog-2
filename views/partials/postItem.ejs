@@ -1,26 +1,26 @@
 
     <div class="post-item">
         <div class="post-img">
-            <img src="<%- image %>" alt="post img">
+            <img src="<%= post.image %>" alt="post img">
         </div>
         <div class="post-description">
             <div class="post-title">
                 <h1>
-                    <%= postTitle %>
+                    <%= post.postTitle %>
                 </h1>
                 <div class="post-btns">
-                    <% if(String(isAuthor) === String(user._id)) { %>
-                        <a href="" class="btn delete">Delete</a>
-                        <a href="/edit/<%= psotId %>" class="btn edit">Edit</a>
+                    <% if(String(post.author.id) === String(user._id)) { %>
+                        <a onclick="deletePost('<%=post._id%>', '<%=post.author._id%>')" class="btn delete">Delete</a>
+                        <a href="/edit/<%= post.id %>" class="btn edit">Edit</a>
                     <% } else { %>
                         <div></div>
                     <% }%>
                 </div>
             </div>
-            <p><%= postDescription %> </p>
+            <p><%= post.postDescription %> </p>
            
         </div>
-        <div class="post-user-actions"> n
+        <div class="post-user-actions"> 
             <div>
                 <img src="/image/icons/date.svg" alt="date">
                 <div class="curren-date">
@@ -42,14 +42,16 @@
             <div>
                 <img src="/image/icons/forums.svg" alt="">
                 <div>
-                    <%= postCategory %>
+                    <%= post.postCategory.name %>
                 </div>
             </div>
             <div>
                 <img src="/image/icons/person.svg" alt="">
                 <div>
-                    <%= author %>
+                    <%= post.author.full_name %>
                 </div>
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js" integrity="sha512-v8+bPcpk4Sj7CKB11+gK/FnsbgQ15jTwZamnBf/xDmiQDcgOIYufBo6Acu1y30vrk8gg5su4x0CG3zfPaq5Fcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="/js/deletePost.js"></script>
     </div>

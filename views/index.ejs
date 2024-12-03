@@ -10,15 +10,7 @@
                     <%- include('./partials/sectionsHeader.ejs', {title: 'Блоги по программированию', description: 'Популярные и лучшие публикации по программированию для начинающих и профессиональных программистов и IT-специалистов.'}) %>
                     <div class="posts-list">
                         <% posts.forEach(post => { %>
-                            <%- include('./partials/postItem.ejs', {
-                                postTitle: post.postTitle, 
-                                postCategory: post.postCategory.name, 
-                                postDescription: post.postDescription, 
-                                image: post.image, 
-                                author: post.author.full_name,
-                                isAuthor: post.author._id,
-                                psotId: post.id
-                            }) %>
+                            <%- include('./partials/postItem.ejs', {post}) %>
                         <% }) %>
                     </div>
                 </div>

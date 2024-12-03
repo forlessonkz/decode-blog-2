@@ -20,15 +20,7 @@
                     <%=posts.postTitle%>
                     <% posts.forEach(post => { %>
                         <% if(String(post.author.id) === String(user._id)) { %>
-                            <%- include('./partials/postItem.ejs', {
-                                postTitle: post.postTitle, 
-                                postCategory: post.postCategory.name, 
-                                postDescription: post.postDescription, 
-                                image: post.image, 
-                                author: post.author.full_name,
-                                isAuthor: post.author.id,
-                                psotId: post.id
-                            }) %>
+                            <%- include('./partials/postItem.ejs', {post}) %>
                         <% } %>
                     <% }) %>
                 </div>
