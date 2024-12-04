@@ -7,8 +7,60 @@
         <div class="main-container">
             <div class="content">
                 <div class="post-container">
-                    <div class="posts-list">
-                        <%- include('./partials/postItem.ejs', {image: '/image/posts/post001.png'}) %>
+                    <div class="posts-list">                     
+                        <div class="post-item">
+                            <div class="post-img">
+                                <img src="<%= post.image %>" alt="post img">
+                            </div>
+                            <div class="post-description">
+                                <div class="post-title">
+                                    <h1>
+                                        <%= post.postTitle %>
+                                    </h1>
+                                    <div class="post-btns">
+                                        <% if(String(post.author.id) === String(user._id)) { %>
+                                            <a onclick="deletePost('<%=post._id%>', '<%=post.author._id%>')" class="btn delete">Delete</a>
+                                            <a href="/edit/<%= post.id %>" class="btn edit">Edit</a>
+                                        <% } else { %>
+                                            <div></div>
+                                        <% }%>
+                                    </div>
+                                </div>
+                                <p><%= post.postDescription %> </p>
+                            </div>
+                            <div class="post-user-actions"> 
+                                <div>
+                                    <img src="/image/icons/date.svg" alt="date">
+                                    <div class="curren-date">
+                                        02.11.2024
+                                    </div>
+                                </div>
+                                <div>
+                                    <img src="/image/icons/visibility.svg" alt="">
+                                    <div>
+                                        21
+                                    </div>
+                                </div>
+                                <div>
+                                    <img src="/image/icons/message.svg" alt="">
+                                    <div>
+                                        4
+                                    </div>
+                                </div>
+                                <div>
+                                    <img src="/image/icons/forums.svg" alt="">
+                                    <div>
+                                        <%= post.postCategory.name %>
+                                    </div>
+                                </div>
+                                <div>
+                                    <img src="/image/icons/person.svg" alt="">
+                                    <div>
+                                        <%= post.author.full_name %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="side-bar">

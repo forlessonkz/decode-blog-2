@@ -5,9 +5,12 @@
         </div>
         <div class="post-description">
             <div class="post-title">
-                <h1>
-                    <%= post.postTitle %>
-                </h1>
+                <a href="/post-page/<%= post._id%>">
+                    <h1>
+                        <%= post.postTitle %>
+                    </h1>
+                </a>
+
                 <div class="post-btns">
                     <% if(String(post.author.id) === String(user._id)) { %>
                         <a onclick="deletePost('<%=post._id%>', '<%=post.author._id%>')" class="btn delete">Delete</a>

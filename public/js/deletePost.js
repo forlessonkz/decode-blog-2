@@ -1,8 +1,12 @@
-const axios = require('axios');
 
-function deletePost(id, authorId) {
+
+function deletePost(id, authorID) {
     axios.delete(`/api/posts/${id}`).then(data => {
-        console.log(data)
+        if(data.status = 200) {
+            location.replace(`/profile/${authorID}`)
+        } else if (data.status == 404) {
+            location.replace('/not-fownd')
+        }
     })
-    console.log(id, authorId)
+    console.log(id, authorID)
 }

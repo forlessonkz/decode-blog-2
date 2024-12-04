@@ -16,7 +16,6 @@
                     </a>
                 </div>
                 <div class="posts-list">
-                    <%= user._id %>
                     <%=posts.postTitle%>
                     <% posts.forEach(post => { %>
                         <% if(String(post.author.id) === String(user._id)) { %>

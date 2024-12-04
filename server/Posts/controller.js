@@ -60,10 +60,13 @@ const deletePost = async (req, res) => {
         fs.unlinkSync(path.join(__dirname + '../../../public' + post.image));
         await Post.deleteOne({_id: req.params.id});
         res.status(200).send('ok')
+    } else {
+        res.status(404).send('Not found!')
     }
 }
 
 module.exports = {
     createPost,
-    editPost
+    editPost,
+    deletePost
 };

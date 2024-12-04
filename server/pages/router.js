@@ -16,8 +16,9 @@ router.get('/', async (req, res) => {
     })
 })
 
-router.get('/page', (req, res) => {
-    res.render('postPage', {user: req.user ? req.user : {}})
+router.get('/post-page/:id', async (req, res) => {
+    const post = await Posts.findById(req.params.id)
+    res.render('postPage', {user: {}, post: post})
 })
 
 router.get('/signIn', (req, res) => {
