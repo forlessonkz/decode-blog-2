@@ -17,8 +17,8 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/post-page/:id', async (req, res) => {
-    const post = await Posts.findById(req.params.id)
-    res.render('postPage', {user: {}, post: post})
+    const post = await Posts.findById(req.params.id).populate('postCategory').populate('author')
+    res.render('postPage', {user: req.user ? req.user : {}, post: post})
 })
 
 router.get('/signIn', (req, res) => {
@@ -64,7 +64,7 @@ router.get('/new', async (req, res) => {
 router.get('/edit/:id', async (req, res) => {
     const allCategories = await Categories.find()
     const post = await Posts.findById(req.params.id)
-    res.render('edit', {categories: allCategories, user: req.user ? req.user : {}, post,})
+    res.render('edit', {categories: allCategories, user: req.user ? req.user : {}, post, })
 })
 
 module.exports = router;
