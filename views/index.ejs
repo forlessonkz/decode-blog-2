@@ -7,11 +7,26 @@
         <div class="main-container">
             <div class="content">
                 <div class="post-container">
-                    <%- include('./partials/sectionsHeader.ejs', {title: 'Блоги по программированию', description: 'Популярные и лучшие публикации по программированию для начинающих и профессиональных программистов и IT-специалистов.'}) %>
+                    <%- include('./partials/sectionsHeader.ejs', {
+                        title: 'Блоги по программированию', 
+                        description: 'Популярные и лучшие публикации по программированию для начинающих и профессиональных программистов и IT-специалистов.'
+                    }) %>
                     <div class="posts-list">
                         <% posts.forEach(post => { %>
                             <%- include('./partials/postItem.ejs', {post}) %>
                         <% }) %>
+                        <div class="pages">
+                                <a href=""><%= locals.category%></a>
+                            <% 
+                                let localsStrings = ''
+                                if(locals.postCategory) {
+                                    localsStrings = `postCategory=${locals.postCategory}&`
+                                }
+                                for(let i = 0; i < pages; i ++) { 
+                            %>
+                                <a href="?<%=localsStrings%>page=<%= i %>"><%= i + 1 %></a>
+                            <% } %>
+                        </div>
                     </div>
                 </div>
                 <div class="side-bar">
@@ -21,6 +36,7 @@
                             <%- include('./partials/categories.ejs', {category}) %>
                         <% }) %>
                     </ul>
+
                 </div>
             </div>
         </div>

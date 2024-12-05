@@ -5,14 +5,31 @@ const Categories = require('../Categories/Categories');
 const Posts = require('../Posts/Post');
 
 router.get('/', async (req, res) => {
+
+    const options = {}
+    const categories = await Categories.findOne({key : req.query.postCategory})
+    if(categories) {
+        options.postCategory = categories._id;
+    }
+
+    let page = 0;
+    const limit = 3;
+
+    if(req.query.page && req.query.page > 0) {
+        page = req.query.page
+    }
+
+    const totalPosts = await Posts.countDocuments(options) 
+
     const allCategories = await Categories.find()
     const user = await User.findById(req.params.id)
-    const posts = await Posts.find().populate('postCategory').populate('author')
+    const posts = await Posts.find(options).limit(limit).skip(page * limit).populate('postCategory').populate('author')
     res.render('index', {
         posts: posts, 
         categories: allCategories, 
         user: req.user ? req.user : {}, 
-        loginUser: req.user
+        loginUser: req.user,
+        pages: Math.ceil(totalPosts / limit)
     })
 })
 
