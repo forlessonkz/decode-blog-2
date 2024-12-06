@@ -73,3 +73,33 @@
 .post-user-actions > div img {
     margin-right: 8px;
 }
+
+.post-commets > h2 {
+    margin-bottom: 15px;
+    font-weight: 700;
+
+}
+
+.commets-form, 
+.add-commet {
+    width: 100%;
+}
+
+.add-commet {
+    margin-bottom: 15px;
+    height: 75px;
+    border: 1px solid rgba(231, 231, 231, 1);
+}
+
+.add-commet-btn {
+    margin-bottom: 20px;
+    padding: 15px 25px;
+    background-color: rgba(0, 162, 220, 1);
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+
+    color: #fff;
+
+
+}

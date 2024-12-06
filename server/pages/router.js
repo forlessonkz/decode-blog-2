@@ -8,15 +8,28 @@ router.get('/', async (req, res) => {
 
     const options = {}
     const categories = await Categories.findOne({key : req.query.postCategory})
+
     if(categories) {
         options.postCategory = categories._id;
     }
 
     let page = 0;
-    const limit = 3;
+    const limit = 2;
 
     if(req.query.page && req.query.page > 0) {
         page = req.query.page
+    }
+
+    if(req.query.search && req.query.search.length > 0) {
+        options.$or = [
+            {
+                postTitle: new RegExp(req.query.search, 'i')
+            },
+            {
+                postDescription: new RegExp(req.query.search, 'i')
+            }
+        ];
+        res.locals.search = req.query.search
     }
 
     const totalPosts = await Posts.countDocuments(options) 
