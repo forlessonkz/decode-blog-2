@@ -13,6 +13,7 @@ const PORT = 9081;
 
 require('./server/config/db');
 
+app.use(express.json());
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -37,6 +38,7 @@ app.use(require('./server/pages/router'));
 app.use(require('./server/Categories/router'));
 app.use(require('./server/auth/router'));
 app.use(require('./server/Posts/router'));
+app.use(require('./server/Comments/router'))
 
 
 app.listen(PORT, () => {

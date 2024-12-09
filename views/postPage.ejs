@@ -67,13 +67,23 @@
                         </div>
                         <div class="post-commets">
                             <h2>Кометарй</h2>
-                            <form class="commets-form" action="">
-                                <textarea class="add-commet" name="text" id="">
-
-                                </textarea>
-                                <button class="add-commet-btn">Сохранить</button>
-                            </form>
+                            <% if(user && user._id) { %>
+                                <form class="commets-form" action="">
+                                    <input type="hidden" value="<%= user._id %>" id="commet_author">
+                                    <input type="hidden" value="<%= post._id %>" id="psot_id">
+                                    <textarea class="add-commet" id="commentText">
+    
+                                    </textarea>
+                                    <div onclick="sendComment()"  class="add-commet-btn">Сохранить</div>
+                                </form>
+                            <% } else { %>
+                                <p class="post-sign-in">Чтобы оставить коментарий 
+                                    <a href="/signIn">войдите</a> или 
+                                    <a href="/signUp">зарегистрируйтесь</a>
+                                </p>
+                            <% } %>
                             <div class="all-comments">
+                           
                                 <p>Пока нет комментариев</p>
                             </div>
                         </div>
@@ -97,5 +107,8 @@
             </div>
         </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js" integrity="sha512-v8+bPcpk4Sj7CKB11+gK/FnsbgQ15jTwZamnBf/xDmiQDcgOIYufBo6Acu1y30vrk8gg5su4x0CG3zfPaq5Fcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/deletePost.js"></script>
+    <script src="/js/comment.js"></script>
 </body>
 </html>
