@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../auth/User');
 const Categories = require('../Categories/Categories');
 const Posts = require('../Posts/Post');
+const Comment = require('../Comments/Comment')
 
 router.get('/', async (req, res) => {
 
@@ -47,8 +48,14 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/post-page/:id', async (req, res) => {
+    const comments = await Comment.find({postId: req.params.id}).populate('userId');
+    console.log(comments)
     const post = await Posts.findById(req.params.id).populate('postCategory').populate('author')
-    res.render('postPage', {user: req.user ? req.user : {}, post: post})
+    res.render('postPage', {
+        user: req.user ? req.user : {}, 
+        post: post,
+        comments: comments,
+    })
 })
 
 router.get('/signIn', (req, res) => {

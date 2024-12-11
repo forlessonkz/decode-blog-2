@@ -42,5 +42,5 @@ app.use(require('./server/Comments/router'))
 
 
 app.listen(PORT, () => {
-    console.log(`Server listening on PORT ${PORT}`);
+    console.log(`Server started. Click this link ===> http://localhost:${PORT}`);
 });

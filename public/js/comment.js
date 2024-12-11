@@ -8,6 +8,10 @@ function sendComment () {
             comment: commentText, 
             userId: commet_author, 
             postId: psot_id
+        }).then(data => {
+            if(data.data) {
+                location.reload()
+            }
         });
     }
 }

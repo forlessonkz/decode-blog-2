@@ -83,8 +83,25 @@
                                 </p>
                             <% } %>
                             <div class="all-comments">
-                           
-                                <p>Пока нет комментариев</p>
+                                <p class="comments-header">Комментарии</p>
+                                <% 
+                                    if(comments) { 
+                                        comments.forEach(comment => { 
+                                            if(comment.commentText.length > 0){
+                                %>          
+                                                <div class="post-commets-item">
+                                                    <a href="" class="posts-author"><%= comment.userId.full_name%>:</a>
+                                                    <p class="post-content"><%= comment.commentText%></p>
+                                                </div>
+                                <%          
+                                            }
+                                        })
+                                    } else {
+                                %>
+                                    <p>Пока нет комментариев</p>        
+                                <%        
+                                    }
+                                %>
                             </div>
                         </div>
                     </div>

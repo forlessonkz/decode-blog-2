@@ -4,12 +4,12 @@ const saveComment = async (req, res) => {
     if(req.body.comment && req.body.userId && req.body.postId) {
         await new Comment({
             commentText: req.body.comment,
-            postId: req.body.userId,
-            userId: req.body.postId,
+            postId: req.body.postId,
+            userId: req.body.userId,
+            date: Date.now()
         }).save()
     }
-    console.log(req.body);
-    res.send('ok');
+    res.status(200).send(true);
 }
 
 module.exports = {

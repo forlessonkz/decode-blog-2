@@ -5,9 +5,10 @@ const CommentSchema = new mongoose.Schema({
     commentText: String,
     postId: {type: mongoose.Schema.Types.ObjectId, ref: 'posts'},
     userId: {type: mongoose.Schema.Types.ObjectId, ref: 'user'},
-    // timestamps: {
-    //     date: 'date'
-    // }
+    date: {
+        type: Date,
+        default: Date.now(),
+    }
 });
 
 module.exports = mongoose.model('comment', CommentSchema);
